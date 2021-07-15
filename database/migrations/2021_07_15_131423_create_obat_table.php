@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMedicalRecordNumberTable extends Migration
+class CreateObatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateMedicalRecordNumberTable extends Migration
      */
     public function up()
     {
-        Schema::create('medical_record_number', function (Blueprint $table) {
+        Schema::create('obat', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_rekam_medis');
+            $table->json('resep_obat')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateMedicalRecordNumberTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('medical_record_number');
+        Schema::dropIfExists('obat');
     }
 }

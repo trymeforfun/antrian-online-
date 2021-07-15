@@ -20,8 +20,10 @@ class CreatePatientDataTable extends Migration
             $table->string('nik')->nullable();
             $table->text('alamat')->nullable();
             $table->enum('kategori', ['umum', 'jaminan'])->nullable();
-            $table->text('daftar_obat')->nullable();
+            $table->json('daftar_obat')->nullable();
             $table->foreignId('user_id');
+            $table->text('barcode')->nullable();
+            $table->string('no_hp')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

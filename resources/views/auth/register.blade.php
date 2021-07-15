@@ -72,22 +72,26 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <!-- No HP -->
+                        <div class="mt-4">
+                        <x-label for="kategori" :value="__('No Hp')" />
+                        <x-input id="no_tlp" class="w-full" type="number" name="no_tlp" :value="old('no_tlp')" required autofocus />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <!-- Category -->
                         <div class="mt-4">
                             <x-label for="kategori" :value="__('Kategori')" />
                             <br>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline mt-2">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="umum">
                                 <label class="form-check-label" for="inlineRadio1">Umum</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline mt-2">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="jaminan">
                                 <label class="form-check-label" for="inlineRadio2">Jaminan</label>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        
                     </div>
                 </div>
                 <div class="flex items-center justify-end mt-4">
