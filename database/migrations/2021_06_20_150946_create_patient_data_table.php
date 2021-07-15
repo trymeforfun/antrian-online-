@@ -15,6 +15,7 @@ class CreatePatientDataTable extends Migration
     {
         Schema::create('patient_data', function (Blueprint $table) {
             $table->id();
+            $table->string('no_antrian')->nullable();
             $table->string('nama')->nullable();
             $table->string('nik')->nullable();
             $table->text('alamat')->nullable();

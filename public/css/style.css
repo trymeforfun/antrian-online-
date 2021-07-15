@@ -41,7 +41,6 @@ time, mark, audio, video {
 
 .content {
     position: absolute;
-    
     z-index: 3;
     width: 30%;
     height: 100%;
@@ -56,6 +55,31 @@ time, mark, audio, video {
     margin-top: 10%;
 }
 
-@media (min-width: 576px) { 
+@media (max-width: 576px) { 
+
+    body {
+        overflow: hidden;
+    }
+    .content .card {
+        margin-top: 10%;
+    }
+    .content form {
+        margin-top: 0;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .black {
+        /* display: none; */
+        width: 105%;
+        position: fixed;
+    }
+
+    .background-hero img {
+        position: fixed;
+        margin: auto;
+    }
     
- }
+}

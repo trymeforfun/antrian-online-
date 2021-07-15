@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\DataPatient;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -45,10 +47,18 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        DataPatient::create([
+            'nik' => $request->nik,
+            'alamat' => $request->alamat,
+            'nama' => $user->name,
+            'kategori' => $request->kategori,
+            'user_id' => $user->id
+        ]);
+        $user->assignRole('user');
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        $polys = DB::table('poly')->select('*')->get();
+        return view('dashboard', compact('polys'));
     }
 }

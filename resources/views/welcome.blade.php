@@ -24,15 +24,24 @@
                 <form>
                     <div class="mb-3">
                       <label for="exampleInputEmail1" class="form-label">No. Rekam Medis</label>
-                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="number" style="border: none" class="form-control" placeholder="masukkan no rekam medis" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword1" class="form-label">NIK</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1">
+                      <input type="text" style="border: none" class="form-control" placeholder="masukkan nik" id="exampleInputPassword1">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-success">masuk</button>
                   </form>
-                   
+                  <div class="mt-3 justify-content-between">
+                      <div class="row">
+                          <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+                            <p>belum pernah daftar?</p>
+                          </div>
+                          <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                            <a href="{{url('/register')}}">daftar</a>
+                          </div>
+                      </div>
+                  </div>
             </div>
         </div>
 </body>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $polys = DB::table('poly')->select('*')->get();
+    return view('dashboard', compact('polys'));
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
