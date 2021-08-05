@@ -11,5 +11,10 @@ class DataPatient extends Model
 
     public $table = 'patient_data';
 
-    protected $fillable = ['nik', 'nama', 'alamat', 'kategori', 'user_id'];
+    protected $fillable = ['nik', 'nama', 'alamat', 'kategori', 'user_id', 'no_hp'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

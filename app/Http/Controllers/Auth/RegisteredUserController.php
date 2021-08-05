@@ -52,7 +52,8 @@ class RegisteredUserController extends Controller
             'alamat' => $request->alamat,
             'nama' => $user->name,
             'kategori' => $request->kategori,
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'no_hp' => $request->no_hp
         ]);
         $user->assignRole('user');
         event(new Registered($user));
