@@ -21,17 +21,18 @@
                 <div class="card-header  bg-transparent">
                     <img src="{{url('assets/img/sitanala-logo.jpeg')}}" alt="">
                 </div>
-                <form>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">No. Rekam Medis</label>
-                      <input type="number" style="border: none" class="form-control" placeholder="masukkan no rekam medis" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">NIK</label>
-                      <input type="text" style="border: none" class="form-control" placeholder="masukkan nik" id="exampleInputPassword1">
-                    </div>
-                    <button type="submit" class="btn btn-success">masuk</button>
-                  </form>
+                <form action="{{url('/user/login')}}" method="POST">
+                @csrf
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">No. Rekam Medis</label>
+                    <input type="number" style="border: none" name="" class="form-control" placeholder="masukkan no rekam medis" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">NIK</label>
+                    <input type="text" style="border: none" name="nik" class="form-control" placeholder="masukkan nik" id="exampleInputPassword1">
+                  </div>
+                  <button type="submit" class="btn btn-success">masuk</button>
+                </form>
                   <div class="mt-3 justify-content-between">
                       <div class="row">
                           <div class="col-12 col-sm-12 col-md-8 col-lg-8">

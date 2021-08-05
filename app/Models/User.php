@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(DataPatient::class, 'user_id', 'id');
     }
+
+    public function polys()
+    {
+        return $this->belongsToMany(Poly::class, 'poly_user', 'user_id', 'poly_id');
+    }
 }
