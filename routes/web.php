@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -13,14 +15,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    $polys = DB::table('poly')->select('*')->get();
-    return view('dashboard', compact('polys'));
-})->middleware(['auth'])->name('dashboard');
+Route::get('/summary', [ClientController::class, 'index'])->middleware(['auth', 'role:user'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::get('/data', [PasienController::class, 'detail_data'])->middleware(['auth', 'role:user'])->name('detail_data');
+Route::post('data',[PasienController::class, 'store_data'])->middleware(['auth', 'role:user'])->name('store-data');
