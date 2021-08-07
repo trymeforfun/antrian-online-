@@ -32,7 +32,16 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if (auth()->hasRole('user')) {
+            if (auth()->user()->data_patient->payment_status == 0) {
+                if (auth()->user()->data_patient->kategori == "jaminan") {
+                    return redirect()->intended(RouteServiceProvider::HOME);
+                } else if (auth()->user()->data_patient->kategori == "umum") {
+                    return redirect()->back()->with('error', 'silahkan lakukan');
+                } 
+            }
+        }
+
     }
 
     /**

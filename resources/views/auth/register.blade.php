@@ -22,23 +22,30 @@
                         </div>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <!-- Name -->
-                        <div class="">
-                            <x-label for="name" :value="__('Nama')" />
-
-                            <x-input id="name" class="w-full" type="text" name="name" :value="old('name')" required autofocus />
+                         <!-- No BPJS -->
+                        <div>
+                            <x-label for="no_pjs" :value="__('No. BPJS')" />
+                            <x-input id="no_bpjs" class="w-full" type="text" name="no_bpjs" :value="old('no_bpjs')" required autofocus />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                        <!-- Name -->
+                        <div class="mt-4">
+                            <x-label for="name" :value="__('Nama')"/>
+                            <x-input id="name" class="w-full" type="text" name="name" :value="old('name')" required autofocus />
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                          <!-- Alamat -->
                         <div class="mt-4">
                             <x-label for="alamat" :value="__('Alamat')" />
-
                             <textarea name="alamat" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="alamat" style="width: 100%" rows="2" name="alamat" :value="old('alamat')" required autofocus></textarea>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <!-- Email Address -->
                     <div class="mt-4">
@@ -47,8 +54,6 @@
                         <x-input id="email" class="w-full" type="email" name="email" :value="old('email')" required />
                     </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                          <!-- Password -->
                         <div class="mt-4">
@@ -60,7 +65,7 @@
                                             required autocomplete="new-password" />
                         </div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6"> <!-- Confirm Password -->
+                    {{-- <div class="col-12 col-sm-12 col-md-6 col-lg-6"> <!-- Confirm Password -->
                         <div class="mt-4">
                             <x-label for="password_confirmation" :value="__('Confirm Password')" />
             
@@ -68,7 +73,7 @@
                                             type="password"
                                             name="password_confirmation" required />
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
