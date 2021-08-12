@@ -47,14 +47,23 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        DataPatient::create([
+        $data = DataPatient::create([
             'nik' => $request->nik,
             'alamat' => $request->alamat,
+            'payment_status' => 0,
             'nama' => $user->name,
             'kategori' => $request->kategori,
             'user_id' => $user->id,
             'no_hp' => $request->no_hp
         ]);
+
+        if ($data->kategori == "jaminan") {
+            $data->update([
+                'no_bpjs' => $request->bpjs,
+                'payment_status' => 2
+            ]);
+        } 
+
         $user->assignRole('user');
         event(new Registered($user));
 

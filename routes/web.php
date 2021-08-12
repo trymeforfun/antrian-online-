@@ -24,4 +24,4 @@ Route::get('/', function () {
 Route::get('/summary', [ClientController::class, 'index'])->middleware(['auth', 'role:user'])->name('dashboard');
 
 Route::get('/data', [PasienController::class, 'detail_data'])->middleware(['auth', 'role:user'])->name('detail_data');
-Route::post('data',[PasienController::class, 'store_data'])->middleware(['auth', 'role:user'])->name('store-data');
+Route::post('/data', [PasienController::class, 'store_data'])->middleware(['auth', 'role:user'])->name('store-data');
