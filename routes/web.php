@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardAdminController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PasienController;
 use Illuminate\Support\Facades\DB;
@@ -25,3 +27,7 @@ Route::get('/summary', [ClientController::class, 'index'])->middleware(['auth', 
 
 Route::get('/data', [PasienController::class, 'detail_data'])->middleware(['auth', 'role:user'])->name('detail_data');
 Route::post('/data', [PasienController::class, 'store_data'])->middleware(['auth', 'role:user'])->name('store-data');
+
+Route::get('/dashboard-admin', [DashboardAdminController::class, 'index'])->middleware(['auth', 'role:admin'])->name('dashboard-admin');
+Route::get('/home', [HomeController::class, 'superAdminHome'])->middleware(['auth', 'role: super admin'])->name('home');
+

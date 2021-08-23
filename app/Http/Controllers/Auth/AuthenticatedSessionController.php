@@ -40,6 +40,10 @@ class AuthenticatedSessionController extends Controller
                     return redirect()->back()->with('error', 'silahkan lakukan');
                 } 
             }
+        } elseif (auth()->hasRole('admin')) {
+            return redirect('dashboard-admin');
+        } else {
+            return redirect('home');
         }
 
     }
