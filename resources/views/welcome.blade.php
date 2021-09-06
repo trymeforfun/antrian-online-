@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="black" style=""></div>
+    <div class="black"></div>
     <div class="background-hero">
         <img src="{{url('assets/img/rsstnl.jpg')}}" alt="">
     </div>
@@ -25,7 +25,7 @@
                 @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">No. Rekam Medis</label>
-                    <input type="number" style="border: none" name="" class="form-control" placeholder="masukkan no rekam medis" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" style="border: none" name="no_rekam_medis" class="form-control" placeholder="masukkan no rekam medis" id="exampleInputEmail1" aria-describedby="emailHelp">
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">NIK</label>

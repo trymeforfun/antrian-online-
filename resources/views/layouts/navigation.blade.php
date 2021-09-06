@@ -12,12 +12,28 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Summary') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('detail_data')" :active="request()->routeIs('detail_data')">
-                        {{ __('Detail') }}
-                    </x-nav-link>
+                    @if(auth()->user()->roles[0]->name == 'user')
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Summary') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('detail_data')" :active="request()->routeIs('detail_data')">
+                            {{ __('Detail') }}
+                        </x-nav-link>
+                    @elseif(auth()->user()->roles[0]->name == 'super admin')
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Summary') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('detail_data')" :active="request()->routeIs('detail_data')">
+                            {{ __('Detail') }}
+                        </x-nav-link>
+                    @else 
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Summary') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('detail_data')" :active="request()->routeIs('detail_data')">
+                            {{ __('Detail') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

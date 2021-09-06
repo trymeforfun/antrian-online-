@@ -17,7 +17,6 @@ class CreatePatientDataTable extends Migration
             $table->id();
             $table->string('no_antrian')->nullable();
             $table->string('nama')->nullable();
-            $table->string('nik')->nullable();
             $table->text('alamat')->nullable();
             $table->enum('kategori', ['umum', 'jaminan'])->nullable();
             $table->json('daftar_obat')->nullable();

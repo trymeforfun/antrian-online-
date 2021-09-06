@@ -32,14 +32,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (auth()->hasRole('user')) {
-            if (auth()->user()->data_patient->payment_status == 0) {
-                if (auth()->user()->data_patient->kategori == "jaminan") {
-                    return redirect()->intended(RouteServiceProvider::HOME);
-                } else if (auth()->user()->data_patient->kategori == "umum") {
-                    return redirect()->back()->with('error', 'silahkan lakukan');
-                } 
-            }
+        if (auth()->user()->roles[0]->name == 'super admin') {
+            return redirect('/dashboard/superadmin');
+        } else {
+            return redirect('/dashboard/admin');
         }
 
     }
@@ -52,12 +48,12 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
-
+    
         $request->session()->regenerateToken();
-
+    
         return redirect('/');
     }
 }

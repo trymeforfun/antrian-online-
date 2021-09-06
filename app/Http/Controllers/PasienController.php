@@ -22,13 +22,11 @@ class PasienController extends Controller
     {
         
         $user = User::with('data_patient')->where('id', auth()->user()->id)->firstOrFail();
-        // return $user;
         return view('client.detail', compact('user'));
     }
 
     public function store_data(Request $request)
     {
-        // return $request;
         $user = User::where('id', auth()->user()->id)->update([
             'nomor_rekam_medis' => rand(1, 999999),
         ]);
