@@ -40,6 +40,6 @@ class PasienController extends Controller
         $user->polys()->save($polys);
         $user = User::with('polys')->findOrFail(auth()->user()->id);
 
-        return $user;
+        return view('client.detail', compact('user'));
     }
 }

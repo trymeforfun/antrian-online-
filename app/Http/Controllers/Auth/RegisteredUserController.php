@@ -69,6 +69,11 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
         $polys = DB::table('poly')->select('*')->get();
+
+        if ($user->regis_status == 0) {
+            return back()->with('error', 'silahkan lakukan pembayaran terlebih dahulu');
+        }
+
         return view('dashboard', compact('polys'));
     }
 }

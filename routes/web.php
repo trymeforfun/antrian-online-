@@ -34,4 +34,5 @@ Route::post('/data', [PasienController::class, 'store_data'])->middleware(['auth
 
 // Officer
 Route::get('/dashboard/superadmin', [AdminController::class, 'hotel'])->middleware(['auth', 'role:super admin'])->name('hotel');
+Route::get('/dashboard/user', [AdminController::class, 'user'])->middleware(['auth', 'role:super admin']);
 Route::get('/dashboard/admin', [AdminController::class, 'hometown'])->middleware(['auth', 'role:admin'])->name('hometown');
