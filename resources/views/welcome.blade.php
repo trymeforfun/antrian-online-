@@ -18,6 +18,11 @@
     </div>
         <div class="content">
             <div class="card shadow p-5">
+              <!-- Session Status -->
+          <x-auth-session-status class="mb-4" :status="session('status')" />
+
+          <!-- Validation Errors -->
+          <x-auth-validation-errors class="mb-4" :errors="$errors" />
                 <div class="card-header  bg-transparent">
                     <img src="{{url('assets/img/sitanala-logo.jpeg')}}" alt="">
                 </div>
@@ -25,7 +30,7 @@
                 @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">No. Rekam Medis</label>
-                    <input type="number" style="border: none" name="no_rekam_medis" class="form-control" placeholder="masukkan no rekam medis" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="number" style="border: none" name="nomor_rekam_medis" class="form-control" placeholder="masukkan no rekam medis" id="exampleInputEmail1" aria-describedby="emailHelp">
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">NIK</label>

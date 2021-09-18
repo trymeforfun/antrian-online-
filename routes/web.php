@@ -26,10 +26,10 @@ Route::get('/', function () {
 
 
 // Authentication
-Route::post('/user/login', [UserController::class, 'authenticate']);
+Route::post('/guest/login', [UserController::class, 'authenticate']);
 
 // Client
-Route::get('/summary', [ClientController::class, 'index'])->middleware(['auth', 'role:user'])->name('dashboard');
+Route::get('/summary', [ClientController::class, 'index'])->middleware(['auth'])->name('summary');
 Route::get('/data', [PasienController::class, 'detail_data'])->middleware(['auth', 'role:user'])->name('detail_data');
 Route::post('/data', [PasienController::class, 'store_data'])->middleware(['auth', 'role:user'])->name('store-data');
 
