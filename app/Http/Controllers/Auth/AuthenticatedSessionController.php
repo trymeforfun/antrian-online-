@@ -32,10 +32,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (auth()->user()->roles[0]->name == 'super admin') {
-            return redirect('/dashboard/superadmin');
+        if (auth()->user()->roles[0]->id == 3) {
+            if (auth()->user()->data_patient->payment_status == 0) {
+                if (auth()->user()->data_patient->kategori == "jaminan") {
+                    return redirect()->intended(RouteServiceProvider::HOME);
+                } else if (auth()->user()->data_patient->kategori == "umum") {
+                    return redirect()->back()->with('error', 'silahkan lakukan');
+                } 
+            }
+        } elseif (auth()->user()->roles[0]->id == 2) {
+            return redirect('dashboard-admin');
         } else {
-            return redirect('/dashboard/admin');
+            return redirect('home');
         }
 
     }

@@ -21,7 +21,7 @@
                 <div class="card-header  bg-transparent">
                     <img src="{{url('assets/img/sitanala-logo.jpeg')}}" alt="">
                 </div>
-                <form action="{{url('/user/login')}}" method="POST">
+                <form action="{{url('/guest/login')}}" method="POST">
                 @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">No. Rekam Medis</label>
