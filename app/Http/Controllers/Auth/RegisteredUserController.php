@@ -46,33 +46,15 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'nik' => $request->nik,
+            'nomor_rekam_medis' => rand(1, 999999),
+            'no_bpjs' => $request->bpjs
         ]);
-
-        $data = DataPatient::create([
-            'alamat' => $request->alamat,
-            'payment_status' => 0,
-            'nama' => $user->name,
-            'kategori' => $request->kategori,
-            'user_id' => $user->id,
-            'no_hp' => $request->no_hp
-        ]);
-
-        if ($data->kategori == "jaminan") {
-            $data->update([
-                'no_bpjs' => $request->bpjs,
-                'payment_status' => 2
-            ]);
-        } 
 
         $user->assignRole('user');
         event(new Registered($user));
 
         Auth::login($user);
         $polys = DB::table('poly')->select('*')->get();
-
-        if ($user->regis_status == 0) {
-            return back()->with('error', 'silahkan lakukan pembayaran terlebih dahulu');
-        }
 
         return view('dashboard', compact('polys'));
     }

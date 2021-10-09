@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use Milon\Barcode\Facades\DNS1DFacade as DNS1D;
 use Illuminate\Support\Str;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class PasienController extends Controller
 {
@@ -21,25 +22,52 @@ class PasienController extends Controller
     public function detail_data()
     {
         
-        $user = User::with('data_patient')->where('id', auth()->user()->id)->firstOrFail();
-        return view('client.detail', compact('user'));
+        $user = User::with(['data_patient', 'polys'])->where('id', auth()->user()->id)->firstOrFail();
+        
+        $pasien = DataPatient::where('user_id', $user->id)->latest()->first();
+        return view('client.detail', compact('user', 'pasien'));
     }
 
     public function store_data(Request $request)
     {
-        $user = User::where('id', auth()->user()->id)->update([
-            'nomor_rekam_medis' => rand(1, 999999),
-        ]);
         $polys = Poly::findOrFail($request->poly);
         
         $user = User::where('id', auth()->user()->id)->firstOrFail();
-        DataPatient::where('user_id', auth()->user()->id)->update([
-            'no_antrian' => 'A'. $user->id,
-            'barcode' => DNS1D::getBarcodeHTML($user->nomor_rekam_medis, 'C128'),
+
+        $count = DataPatient::count();
+        // return $count;
+        if ($count == 0) {
+            $inc = 101;
+            $no_surat = 'A'.$inc;
+        } else {
+            $catch = DataPatient::all()->last();
+            $inc = (int)substr($catch->no_antrian, -3) + 1;
+            $no_surat = 'A'.$inc;
+        }
+        
+        $data = DataPatient::create([
+            'alamat' => $user->alamat,
+            'payment_status' => 0,
+            'nama' => $user->name,
+            'kategori' => $user->kategori,
+            'user_id' => $user->id,
+            'no_hp' => $user->no_hp,
+            'no_antrian' => $no_surat,
         ]);
+
+        
+        if ($data->kategori == "jaminan") {
+            $data->update([
+                // 'no_bpjs' => $request->bpjs,
+                'payment_status' => 2
+            ]);
+        } 
+        // return $data;
+        
         $user->polys()->save($polys);
         $user = User::with('polys')->findOrFail(auth()->user()->id);
-
-        return view('client.detail', compact('user'));
+        $pasien = DataPatient::where('user_id', $user->id)->latest()->first();
+        // return $pasien;
+        return view('client.detail', compact('user', 'pasien'));
     }
 }

@@ -22,7 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'nik'
+        'nik', 
+        'nomor_rekam_medis',
+        'no_bpjs',
     ];
 
     /**
@@ -46,7 +48,7 @@ class User extends Authenticatable
 
     public function data_patient()
     {
-        return $this->hasOne(DataPatient::class, 'user_id', 'id');
+        return $this->hasMany(DataPatient::class, 'user_id', 'id');
     }
 
     public function polys()

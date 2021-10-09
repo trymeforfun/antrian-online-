@@ -5,28 +5,28 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('summary') }}">
                         {{-- <x-application-logo class="block h-10 w-auto fill-current text-gray-600" /> --}}
                     </a>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 @if (auth()->user()->roles[0]->name = 'user')
                 <!-- Navigation Links -->
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('summary')" :active="request()->routeIs('summary')">
                         {{ __('Summary') }}
                     </x-nav-link>
                     <x-nav-link :href="route('detail_data')" :active="request()->routeIs('detail_data')">
                         {{ __('Detail') }}
                     </x-nav-link>   
                 @elseif (auth()->user()->roles[0]->name = 'admin')
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-nav-link :href="route('hometown')" :active="request()->routeIs('hometown')">
                     {{ __('Summary') }}
                 </x-nav-link>
                 <x-nav-link :href="route('detail_data')" :active="request()->routeIs('detail_data')">
                     {{ __('Detail') }}
                 </x-nav-link> 
                 @else
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-nav-link :href="route('hotel')" :active="request()->routeIs('hotel')">
                     {{ __('Summary') }}
                 </x-nav-link>
                 <x-nav-link :href="route('detail_data')" :active="request()->routeIs('detail_data')">
@@ -81,8 +81,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('summary')" :active="request()->routeIs('summary')">
+                {{ __('Summary') }}
             </x-responsive-nav-link>
         </div>
 

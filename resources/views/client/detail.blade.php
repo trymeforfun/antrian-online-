@@ -11,8 +11,8 @@
                 {{-- <div class="p-6 bg-white border-b border-gray-200"> --}}
                     <div class="bg-white rounded shadow border p-6 w-80">
                         <h5 class="text-7xl font-bold mb-2 mt-0">
-                           {!!$user->data_patient->barcode!!} 
-                           {{$user->data_patient->no_antrian}}
+                           {!!DNS1D::getBarcodeHTML($user->nomor_rekam_medis, 'C128')   !!} 
+                           {{$pasien->no_antrian}}
                         </h5>
                         <p class="text-gray-700 text-xl">Nama : {{$user->name}}</p>
                         <p class="text-gray-700 text-xl">NIK : {{$user->nik}}</p>

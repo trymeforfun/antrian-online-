@@ -22,8 +22,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     return view('welcome');
-});
-
+})->name('home');
 
 // Authentication
 Route::post('/guest/login', [UserController::class, 'authenticate']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|email',
+            'nomor_rekam_medis' => 'required',
             'password' => 'required|string',
         ];
     }
@@ -45,12 +46,21 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        $fieldType = filter_var(request()->input('nomor_rekam_medis'), FILTER_VALIDATE_EMAIL) ? 'email' : 'nomor_rekam_medis';
 
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
+        if (!Auth::attempt(array($fieldType => request()->input('nomor_rekam_medis'), 'password' => request()->input('password')), $this->filled('remember'))) {
+            RateLimiter::hit($this->throttleKey());
+            $user = User::where('nomor_rekam_medis', '=', request()->input('nomor_rekam_medis'))->first();
+            if ($user === null) {
+                throw ValidationException::withMessages([
+                    'nomor_rekam_medis' => 'Maaf, anda belum terdaftar!',
+                ]);
+            } else {
+                throw ValidationException::withMessages([
+                    // 'email' => __('auth.failed'),
+                    'nomor_rekam_medis' => 'Maaf, username atau password yang masukkan salah!',
+                ]);
+            }
         }
 
         RateLimiter::clear($this->throttleKey());

@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Summary') }}
+            {{ __('Summary') }} <br>
+            <h2>
+                nomor rekam medis anda - <b>{{ auth()->user()->nomor_rekam_medis }}</b> 
+            </h2>
         </h2>
     </x-slot>
 

@@ -26,15 +26,15 @@
                 <div class="card-header  bg-transparent">
                     <img src="{{url('assets/img/sitanala-logo.jpeg')}}" alt="">
                 </div>
-                <form action="{{url('/guest/login')}}" method="POST">
+                <form action="{{route('login')}}" method="POST">
                 @csrf
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">No. Rekam Medis</label>
                     <input type="number" style="border: none" name="nomor_rekam_medis" class="form-control" placeholder="masukkan no rekam medis" id="exampleInputEmail1" aria-describedby="emailHelp">
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">NIK</label>
-                    <input type="text" style="border: none" name="nik" class="form-control" placeholder="masukkan nik" id="exampleInputPassword1">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="password" style="border: none" class="form-control"  id="password" placeholder="masukkan password">
                   </div>
                   <button type="submit" class="btn btn-success">masuk</button>
                 </form>

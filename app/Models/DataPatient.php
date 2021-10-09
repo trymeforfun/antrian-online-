@@ -12,7 +12,7 @@ class DataPatient extends Model
     public $table = 'patient_data';
 
     protected $fillable = [
-        'nik', 'nama', 'alamat', 'kategori', 'user_id', 'no_hp', 'payment_status', 'regis_status'
+        'nik', 'nama', 'alamat', 'kategori', 'user_id', 'no_hp', 'payment_status', 'regis_status', 'no_antrian', 'poly_name'
     ];
 
     public function user()
