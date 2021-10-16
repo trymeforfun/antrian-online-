@@ -19,7 +19,7 @@ class PasienController extends Controller
         
     }
 
-    public function detail_data()
+    public function     detail_data()
     {
         
         $user = User::with(['data_patient', 'polys'])->where('id', auth()->user()->id)->firstOrFail();
@@ -47,6 +47,7 @@ class PasienController extends Controller
         
         $data = DataPatient::create([
             'alamat' => $user->alamat,
+            'doctor_desc' => $request->doctor_desc,
             'payment_status' => 0,
             'nama' => $user->name,
             'kategori' => $user->kategori,
@@ -55,6 +56,7 @@ class PasienController extends Controller
             'no_antrian' => $no_surat,
         ]);
 
+        // return $data;
         
         if ($data->kategori == "jaminan") {
             $data->update([
@@ -68,6 +70,12 @@ class PasienController extends Controller
         $user = User::with('polys')->findOrFail(auth()->user()->id);
         $pasien = DataPatient::where('user_id', $user->id)->latest()->first();
         // return $pasien;
-        return view('client.detail', compact('user', 'pasien'));
+        return redirect()->route('detail_data');
+    }
+
+    public function getDoctor(Request $request)
+    {
+        $poly = Poly::with('doctors')->find($request->id);
+        return response()->json($poly->doctors[0]);
     }
 }

@@ -15,5 +15,9 @@ class Poly extends Model
         return $this->belongsToMany(User::class, 'poly_user', 'poly_id', 'user_id');
     }
 
+    public function doctors()
+    {
+        return $this->belongsToMany(Doctor::class, 'doctor_poly', 'poly_id', 'doctor_id');
+    }
 
 }
