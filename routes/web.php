@@ -23,14 +23,14 @@ require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     // return Poly::with('doctors')->get();
-    return view('welcome');
+    return view('register');
 })->name('home');
 
 // Authentication
 Route::post('/guest/login', [UserController::class, 'authenticate']);
 
 // Client
-Route::get('/summary', [ClientController::class, 'index'])->middleware(['auth'])->name('summary');
+Route::get('/summary', [ClientController::class, 'index'])->name('summary');
 Route::get('/data', [PasienController::class, 'detail_data'])->middleware(['auth', 'role:user'])->name('detail_data');
 Route::post('/data', [PasienController::class, 'store_data'])->middleware(['auth', 'role:user'])->name('store-data');
 Route::get('/data/get-doctor', [PasienController::class, 'getDoctor'])->name('get-doctor');

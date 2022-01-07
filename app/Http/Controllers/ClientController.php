@@ -12,7 +12,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $polys = DB::table('poly')->select('*')->get();
-        return view('dashboard', compact('polys'));
+        // $polys = DB::table('poly')->select('*')->get();
+        return view('dashboard');
     }
 }
