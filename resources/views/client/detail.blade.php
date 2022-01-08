@@ -5,26 +5,18 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-1">
-            {{-- <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg"> --}}
-            {{-- <div class="p-6 bg-white border-b border-gray-200"> --}}
-            <div class="rounded shadow p-6 w-80">
-                <h5 class="text-7xl font-bold mb-2 mt-0">
-                    {!! DNS1D::getBarcodeHTML($user->nomor_rekam_medis, 'C128') !!}
-                    {{ $pasien->no_antrian }}
-                </h5>
-                <hr>
-                <span><b>Jadwal Dokter :</b><br></span>
-                {{$pasien->doctor_desc}}
-                <hr><br>
-                <p class="text-gray-700 text-xl">Nama : {{ $user->name }}</p>
-                <p class="text-gray-700 text-xl">NIK : {{ $user->nik }}</p>
-                <p class="text-gray-700 text-xl">Kategori : Jaminan</p>
-                <p class="text-gray-700 text-xl">No Rek. Medis : {{ $user->nomor_rekam_medis }}</p>
+    
+    <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex flex-col items-center pb-10">
+            {!! DNS2D::getBarcodeHTML($user->nomor_rekam_medis, 'QRCODE') !!}
+            <h3 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $user->name }}</h3>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{ $user->nik }}</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">{{ $user->nomor_rekam_medis }}</span>
+            <div class="flex mt-4 space-x-3 lg:mt-6">
+                <a href="{{ route('home') }}"
+                    class="inline-flex items-center py-2 px-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">back</a>
             </div>
-            {{-- </div> --}}
-            {{-- </div> --}}
         </div>
     </div>
+
 </x-app-layout>

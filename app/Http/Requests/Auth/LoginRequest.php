@@ -30,7 +30,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'nomor_rekam_medis' => 'required',
+            'nomor_rekam_medis' => 'required|string',
             'password' => 'required|string',
         ];
     }
@@ -46,9 +46,9 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        $fieldType = filter_var(request()->input('nomor_rekam_medis'), FILTER_VALIDATE_EMAIL) ? 'email' : 'nomor_rekam_medis';
+        $fieldType = filter_var(request()->input('nomor_rekam_medis'), FILTER_VALIDATE_EMAIL) ? 'nomor_rekam_medis' : 'email';
 
-        if (!Auth::attempt(array($fieldType => request()->input('nomor_rekam_medis'), 'password' => request()->input('password')), $this->filled('remember'))) {
+        if (!Auth::attempt(array($fieldType => request()->input('nomor_rekam_medis'), 'password' => request()->input('password')))) {
             RateLimiter::hit($this->throttleKey());
             $user = User::where('nomor_rekam_medis', '=', request()->input('nomor_rekam_medis'))->first();
             if ($user === null) {
@@ -58,7 +58,7 @@ class LoginRequest extends FormRequest
             } else {
                 throw ValidationException::withMessages([
                     // 'email' => __('auth.failed'),
-                    'nomor_rekam_medis' => 'Maaf, username atau password yang masukkan salah!',
+                    'nomor_rekam_medis' => 'Maaf, nomor rekam medis atau password yang dimasukkan salah!',
                 ]);
             }
         }

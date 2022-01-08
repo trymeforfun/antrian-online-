@@ -23,18 +23,14 @@ require __DIR__.'/auth.php';
 
 Route::get('/', function () {
     // return Poly::with('doctors')->get();
-    return view('register');
+    return view('welcome');
 })->name('home');
 
 // Authentication
 Route::post('/guest/login', [UserController::class, 'authenticate']);
 
 // Client
-Route::get('/summary', [ClientController::class, 'index'])->name('summary');
+Route::get('/summary', [ClientController::class, 'index'])->middleware(['auth'])->name('summary');
 Route::get('/data', [PasienController::class, 'detail_data'])->middleware(['auth', 'role:user'])->name('detail_data');
 Route::post('/data', [PasienController::class, 'store_data'])->middleware(['auth', 'role:user'])->name('store-data');
 Route::get('/data/get-doctor', [PasienController::class, 'getDoctor'])->name('get-doctor');
-// Officer
-Route::get('/dashboard/superadmin', [AdminController::class, 'hotel'])->middleware(['auth', 'role:super admin'])->name('hotel');
-Route::get('/dashboard/user', [AdminController::class, 'user'])->middleware(['auth', 'role:super admin']);
-Route::get('/dashboard/admin', [AdminController::class, 'hometown'])->middleware(['auth', 'role:admin'])->name('hometown');

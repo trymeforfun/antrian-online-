@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        // return $request;
         // return auth()->user();
         if (auth()->user()->roles[0]->id == 3) {
             return redirect('summary');

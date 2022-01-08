@@ -19,9 +19,8 @@ class PasienController extends Controller
         
     }
 
-    public function     detail_data()
+    public function detail_data()
     {
-        
         $user = User::with(['data_patient', 'polys'])->where('id', auth()->user()->id)->firstOrFail();
         
         $pasien = DataPatient::where('user_id', $user->id)->latest()->first();

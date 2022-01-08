@@ -18,7 +18,7 @@ class UserController extends Controller
             ]);
             
             $user = User::with('roles')->where('nik', $credentials['nik'])->where('nomor_rekam_medis', $credentials['nomor_rekam_medis'])->first();
-
+            return $user;
             $polys = DB::table('poly')->select('*')->get();
             return view('dashboard', compact('polys', 'user'));
         } catch (\Exception $ex) {

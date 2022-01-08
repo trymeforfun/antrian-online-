@@ -3,8 +3,9 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Summary') }} <br>
             <h2>
-                {{-- {{ auth()->user()->nomor_rekam_medis }} --}}
-                nomor rekam medis anda - <b>198564</b>
+                {{ auth()->user()->nomor_rekam_medis }}
+                {{ auth()->user()->name }}
+                {{-- nomor rekam medis anda - <b>198564</b> --}}
             </h2>
         </h2>
     </x-slot>
